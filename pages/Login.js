@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ScrollView, View, TextInput, Text, Button} from 'react-native';
-import {login} from '../redux/actions/auth';
-import Loader from '../components/Loader';
+import {loginAction} from '../redux/actions/auth';
 
 class Login extends Component{
     constructor (props){
@@ -21,7 +20,6 @@ class Login extends Component{
     render(){
         return(
             <ScrollView style={{padding: 20}}>
-                <Loader loading={isLoading} />
                 <Text style={{fontSize: 27}}>
                     Login
                 </Text>
@@ -58,7 +56,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLogin: (username, password) => { dispatch(login(username, password)); }
+        onLogin: (username, password) => { dispatch(loginAction(username, password)); }
     }
 }
 

@@ -33,6 +33,34 @@ export const login = (username, password) =>{
     };
 };
 
+export const login2 =(data) => {
+    return{
+        type: 'LOGIN',
+        payload: {
+            username: data.data.nama,
+            password: data.data.username,
+        }
+    }
+}
+
+export const loginAction = (username, password) =>{
+    const token = 'v1m14A0flRIu0dHgX4SxfWwKyRr77YeoTERCecgDATobL9crmm1iBXLZcEEO';
+    const data = {
+        npp: username,
+        password: password,
+        token : token,
+    };
+    return (dispatch) => {
+        return axios.post('http://10.70.130.39:82/outing/index.php/api/login',data)
+        .then((response) => {
+            console.log(response.data);
+            dispatch(login2(response.data))
+        }).catch(error => {
+            throw(error);
+        });
+    }
+}
+
 export const logout = () => {
     return{
         type: 'LOGOUT'
